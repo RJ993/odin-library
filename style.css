@@ -1,0 +1,129 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+}
+
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+p {
+  text-wrap: pretty;
+  text-align: center;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+  text-align: center;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+body {
+  background-color: rgb(107, 252, 252);
+  font-size: 2rem;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+body > div {
+  margin: 0.5em;
+  margin-top: 0;
+}
+
+body > div > div {
+  display: flex;
+  min-height: min-content;
+  justify-content: space-around;
+  max-height: min-content;
+}
+
+h1{
+  color: rgb(255, 201, 101);
+  padding: 1em;
+}
+
+h2{
+  padding: 0.5em;
+  font-size: 5rem;
+}
+
+main {
+  margin: 0.5em;
+  border: 0.26em inset;
+  width: 30%;
+  max-height: min-content;
+  background-color: rgba(11, 11, 126, 0.296);
+  border-color: rgba(107, 252, 252, 0.432);
+}
+
+main > div {
+  margin: 2em;
+  background: linear-gradient(to right, rgb(249, 205, 96) 98.7%, white 98.7% 99.4%, black 99.4% 100%);
+  padding: 2em;
+  border-top-left-radius: 0.5em;
+  border-bottom-left-radius: 0.5em;
+  border-bottom: 0.1em black solid;
+}
+
+main > div > div {
+  margin: 1em;
+  margin-top: 0;
+  border: 0.26em outset;
+  border-color: rgba(0, 0, 0, 0.238);
+  padding: 5em;
+}
+
+button {
+  position: fixed;
+  background-color: rgba(11, 11, 126, 0.296);
+  width: 15%;
+  border: 0.26em inset;
+  border-color: rgba(107, 252, 252, 0.432);
+  padding: 2em;
+  height: 70vh;
+  top: 9em;
+}
+
+button:hover{
+  background-color: rgba(70, 70, 255, 0.296);
+}
+
+button > div {
+  border-left: 6em solid transparent;
+  border-right: 6em solid transparent;
+  border-bottom: 9em solid rgb(249, 198, 68);
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+}
+
+.back {
+  left: 10em;
+}
+
+.forward {
+  right: 10em;
+}
+
+.back > div {
+  transform: rotate(-90deg);
+}
+
+.forward > div {
+  transform: rotate(90deg);
+}
