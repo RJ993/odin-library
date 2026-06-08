@@ -48,8 +48,9 @@ body > div {
 
 body > div > div {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   min-height: min-content;
-  justify-content: space-around;
   max-height: min-content;
 }
 
@@ -74,7 +75,7 @@ main {
 
 main > div {
   margin: 2em;
-  background: linear-gradient(to right, rgb(249, 205, 96) 98.7%, white 98.7% 99.4%, black 99.4% 100%);
+  background: linear-gradient(to right, rgb(249, 205, 96) 4.7%, rgb(255, 194, 41) 4.7% 7%, rgb(249, 205, 96) 7% 98.7%, white 98.7% 99.4%, black 99.4% 100%);
   padding: 2em;
   border-top-left-radius: 0.5em;
   border-bottom-left-radius: 0.5em;
@@ -89,7 +90,7 @@ main > div > div {
   padding: 5em;
 }
 
-button {
+button.side {
   position: fixed;
   background-color: rgba(11, 11, 126, 0.296);
   width: 15%;
@@ -98,6 +99,14 @@ button {
   padding: 2em;
   height: 70vh;
   top: 9em;
+}
+
+button.bottom {
+  width: 15%;
+  padding: 1.2em;
+  background-color: rgba(11, 11, 126, 0.296);
+  max-height: min-content;
+  font-size: 2rem;
 }
 
 button:hover{
@@ -126,4 +135,8 @@ button > div {
 
 .forward > div {
   transform: rotate(90deg);
+}
+
+.hide {
+  display: none;
 }
