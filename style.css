@@ -39,9 +39,10 @@ body {
   background-color: rgb(107, 252, 252);
   font-size: 2rem;
   font-family: 'Times New Roman', Times, serif;
+  z-index: 0;
 }
 
-body > div {
+.interface {
   margin: 0.5em;
   margin-top: 0;
 }
@@ -113,12 +114,66 @@ button:hover{
   background-color: rgba(70, 70, 255, 0.296);
 }
 
-button > div {
+button > div.arrow {
   border-left: 6em solid transparent;
   border-right: 6em solid transparent;
   border-bottom: 9em solid rgb(249, 198, 68);
   border-bottom-left-radius: 0.5em;
   border-bottom-right-radius: 0.5em;
+  transition: transform 0.3s;
+}
+
+form {
+  position: fixed;
+  overflow-y: scroll;
+  top: 3em;
+  left: 15em;
+  background-color: rgb(254, 239, 239);
+  border-radius: 5px;
+  padding: 2em;
+  width: 60%;
+  max-height: 80vh;
+  transition: display 0.5s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+}
+
+label {
+  font-size: 3rem;
+  display: block;
+}
+
+label[name="status"] {
+  margin-right: 0em;
+  margin-left: 0.3em;
+  display: inline;
+}
+
+input[type="text"] {
+  padding: 0.5em;
+}
+
+input[type="radio"] {
+  margin-left: 2em;
+  transform: scale(1.4);
+}
+
+fieldset {
+  padding: 1em;
+  border: none;
+}
+
+fieldset > legend {
+  font-size: 4rem;
+}
+
+fieldset > div {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-bottom: 0.2em;
 }
 
 .back {
@@ -129,14 +184,48 @@ button > div {
   right: 10em;
 }
 
-.back > div {
+.backArr {
   transform: rotate(-90deg);
 }
 
-.forward > div {
+.forwardArr {
   transform: rotate(90deg);
+}
+
+.filter {
+  z-index: 1;
+  backdrop-filter: blur(10px);
+  display: block;
+  position: fixed;
+  top: 0.00000001em;
+  background-color: rgba(0, 0, 0, 0.507);
+  width: 100vw;
+  height: 100vh;
+  transition: display 0.5s;
 }
 
 .hide {
   display: none;
+}
+
+.backPress{
+  transform: rotate(-90deg) scale(1.3);
+}
+
+.forwardPress{
+  transform: rotate(90deg) scale(1.3);
+}
+
+.newFormButtons > button {
+  font-size: 1.6rem;
+  padding: 2em;
+  margin: 1em;
+}
+
+.errorMessage{
+  font-size: 3rem;
+  max-width: 60%;
+  padding: 2em;
+  border: red 0.1em solid;
+  color: red;
 }

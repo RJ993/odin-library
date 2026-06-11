@@ -8,21 +8,47 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <div>
+    <div class = "interface">
         <h1>Your Library</h1>
         <div>
-            <main><div id="book"><div> </div><h2 id="title">No book has been selected</h2><p id="author"></p></div></main>
-            <button class="side back"><div></div></button>
-            <button class="side forward"><div></div></button>
+            <main><div id="book"><div> </div><h2 id="titleDis">No book has been selected</h2><p id="authorDis"></p></div></main>
+            <button class="side back"><div class="backArr arrow"></div></button>
+            <button class="side forward"><div class="forwardArr arrow"></div></button>
             <button class="bottom new">New Book</button>
         </div>
     </div>
-    <div class="filter hide">
-        <div>
-            <form>
+    <div class="filter hide"></div>
+        <form class="hide">
+            <h2>New Book Form</h2>
+            <div>
+                <label for="title">Title: <input required type="text" id="title" name="title" minlength="1" maxlength="50"></label>
+                <br>
+                <label for="author">Author: <input required type="text" id="author" name="author" minlength="1" maxlength="50"></label>
+                <br>
+            </div>
+            <fieldset>
+                <legend>Book Progress Status:</legend>
+                <div>
+                    <input id="notRead" type="radio" name="status" value="1" required checked/>
+                    <label for="notRead">I have not read this book yet.</label>
+                </div>
+                <div>
+                    <input id="inTheMiddle" type="radio" name="status" value="2" required/>
+                    <label for="inTheMiddle">I have begun reading.</label>
+                </div>
+                <div>
+                    <input id="finished" type="radio" name="status" value="3" required/>
+                    <label for="finished">I have finished the book.</label>
+                </div>
+            </fieldset>
+            <div class="newFormButtons">
+                <button id="cancel">Cancel Form</button>
+                <button type="submit" id="shelve">Shelve Book</button>
+            </div>
+            <div class="errorMessage hide">
                 
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 </body>
 </html>
