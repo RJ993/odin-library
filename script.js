@@ -15,7 +15,6 @@ const titleInput = document.getElementById("title");
 const authorInput = document.getElementById("author");
 const statuses = document.getElementsByName("status");
 const errorBox = document.querySelector(".errorMessage");
-const lineBreak = document.createElement("br")
 
 
 function Book(title, author, status) {
@@ -79,9 +78,11 @@ function removeFilterAndForm(){
 }
 
 function appendErrorMessage(errorString){
+  const lineBreak = document.createElement("br");
   const paragraph = document.createElement("p");
   paragraph.textContent = errorString;
   errorBox.appendChild(paragraph);
+  errorBox.appendChild(lineBreak);
   if (errorBox.classList.contains('hide')) errorBox.classList.toggle('hide');
 }
 
@@ -90,19 +91,16 @@ function submitButtonGuardClause(titleVal, authorVal, statusNumber){
   appendErrorMessage("Error: ");
   returnValue = 0;
   if (titleVal.length <= 0 || titleVal.length > 50){
-    errorBox.appendChild(lineBreak);
     appendErrorMessage(" - Title must be less than 50 characters and more than 0 characters.");
     returnValue = 1;
   }
 
   if (authorVal.length <= 0 || authorVal.length > 50){
-    errorBox.appendChild(lineBreak)
     appendErrorMessage(" - Author must be less than 50 characters and more than 0 characters.");
     returnValue = 1;
   }
 
   if (statusNumber != 1 && statusNumber != 2 && statusNumber != 3){
-    errorBox.appendChild(lineBreak)
     appendErrorMessage(" - Invalid status.");
     returnValue = 1;
   }
