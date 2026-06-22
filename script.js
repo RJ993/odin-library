@@ -1,5 +1,6 @@
 const myLibrary = [new Book("Please insert a book in the library!", "", 0)];
 let bookPointer = 0;
+const book = document.getElementById("book");
 const backButton = document.querySelector(".back");
 const forwardButton = document.querySelector(".forward");
 const titleDis = document.querySelector("#titleDis");
@@ -15,6 +16,11 @@ const titleInput = document.getElementById("title");
 const authorInput = document.getElementById("author");
 const statuses = document.getElementsByName("status");
 const errorBox = document.querySelector(".errorMessage");
+const deleteButton = document.querySelector(".delete");
+const buttons = document.querySelectorAll("button");
+const deleteBubble = document.querySelector(".deleteConfirmation");
+const cancelDelete = document.getElementById("cancelDelete");
+const confirmDelete = document.getElementById("confirmDelete");
 
 
 function Book(title, author, status) {
@@ -33,7 +39,7 @@ function addBookToLibrary(title, author, status) {
 }
 
 function goBack(){
-  if (bookPointer < 2){
+  if (bookPointer < 2 || bookPointer > myLibrary.length){
     bookPointer = myLibrary.length - 1;
   }else{
     bookPointer--;
@@ -41,9 +47,9 @@ function goBack(){
 }
 
 function goForward(){
-  if(myLibrary.length == 1){
+  if(myLibrary.length <= 1){
     bookPointer = 0;
-  }else if (bookPointer == myLibrary.length - 1){
+  }else if (bookPointer >= myLibrary.length - 1){
     bookPointer = 1;
   }else{
     bookPointer++;
@@ -53,6 +59,14 @@ function goForward(){
 function changeContent(){
   titleDis.textContent = myLibrary.at(bookPointer).title;
   authorDis.textContent = myLibrary.at(bookPointer).author;
+  book.dataset.bookId = myLibrary.at(bookPointer).id;
+}
+
+function revertContent(){
+  titleDis.textContent = "No book has been selected";
+  authorDis.textContent = "";
+  book.dataset.bookId = "";
+  bookPointer = 0;
 }
 
 function removeBackTransition(e){
@@ -141,9 +155,20 @@ newButton.addEventListener('click', (e) =>{
   form.classList.toggle('hide');
 });
 
+deleteButton.addEventListener('click', (e) =>{
+  if (bookPointer == 0) return;
+  filter.classList.toggle('hide');
+  deleteBubble.classList.toggle('hide');
+});
+
 cancelButton.addEventListener('click', (e) =>{
   e.preventDefault();
   removeFilterAndForm();
+});
+
+cancelDelete.addEventListener('click', (e) =>{
+  filter.classList.add('hide');
+  deleteBubble.classList.add('hide');
 });
 
 submitButton.addEventListener('click', (e) => {
@@ -157,5 +182,19 @@ submitButton.addEventListener('click', (e) => {
   }
 });
 
+confirmDelete.addEventListener('click', (e) => {
+  deletionCandidate = myLibrary.findIndex((currentBook, index, library) => {
+    if (currentBook.id == book.dataset.bookId) return index;
+  });
+  if (deletionCandidate == -1) return;
+  myLibrary.splice(deletionCandidate, deletionCandidate);
+  filter.classList.add('hide');
+  deleteBubble.classList.add('hide');
+  revertContent();
+});
+
 backArr.addEventListener('transitionend', removeBackTransition)
 forwardArr.addEventListener('transitionend', removeForwardTransition)
+buttons.forEach(button => button.addEventListener('click', (e) => {
+  (bookPointer == 0) ? deleteButton.disabled = true : deleteButton.disabled = false;
+}));

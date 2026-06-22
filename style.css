@@ -102,8 +102,12 @@ button.side {
   top: 9em;
 }
 
-button.bottom {
-  width: 15%;
+.bottom {
+  display: flex;
+  gap: 1em;
+}
+
+div.bottom > button {
   padding: 1.2em;
   background-color: rgba(11, 11, 126, 0.296);
   max-height: min-content;
@@ -112,6 +116,17 @@ button.bottom {
 
 button:hover{
   background-color: rgba(70, 70, 255, 0.296);
+  cursor: pointer;
+}
+
+div.bottom > button:hover{
+  background-color: rgba(70, 70, 255, 0.296);
+  cursor: pointer;
+}
+
+.delete:disabled, .delete:disabled:hover {
+  background-color: rgb(255, 255, 255);
+  cursor: not-allowed;
 }
 
 button > div.arrow {
@@ -123,7 +138,7 @@ button > div.arrow {
   transition: transform 0.3s;
 }
 
-form {
+form, .deleteConfirmation {
   position: fixed;
   overflow-y: scroll;
   top: 3em;
@@ -216,7 +231,7 @@ fieldset > div {
   transform: rotate(90deg) scale(1.3);
 }
 
-.newFormButtons > button {
+.newFormButtons > button, .deleteConfirmation > div > button {
   font-size: 1.6rem;
   padding: 2em;
   margin: 1em;
@@ -228,4 +243,20 @@ fieldset > div {
   padding: 2em;
   border: red 0.1em solid;
   color: red;
+}
+
+.deleteConfirmation {
+  overflow-y: hidden;
+}
+
+.deleteConfirmation > p {
+  font-size: 12rem;
+}
+
+.deleteConfirmation > div {
+  flex-direction: row;
+}
+
+.deleteConfirmation > div > button {
+  font-size: 3.2rem;
 }

@@ -8,13 +8,16 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <div class = "interface">
+    <div class="interface">
         <h1>Your Library</h1>
         <div>
-            <main><div id="book"><div> </div><h2 id="titleDis">No book has been selected</h2><p id="authorDis"></p></div></main>
+            <main><div id="book" data-book-id=""><div> </div><h2 id="titleDis">No book has been selected</h2><p id="authorDis"></p></div></main>
             <button class="side back"><div class="backArr arrow"></div></button>
             <button class="side forward"><div class="forwardArr arrow"></div></button>
-            <button class="bottom new">New Book</button>
+            <div class="bottom">
+                <button class="new">New Book</button>
+                <button class="delete" disabled>Delete Selected Book</button>
+            </div>
         </div>
     </div>
     <div class="filter hide"></div>
@@ -49,6 +52,10 @@
                 
             </div>
         </form>
+        <div class="deleteConfirmation hide">
+            <p>Are you sure?</p>
+            <div><button id="confirmDelete">Yes</button><button id="cancelDelete">No</button></div>
+        </div>
     </div>
 </body>
 </html>
