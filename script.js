@@ -21,6 +21,7 @@ const buttons = document.querySelectorAll("button");
 const deleteBubble = document.querySelector(".deleteConfirmation");
 const cancelDelete = document.getElementById("cancelDelete");
 const confirmDelete = document.getElementById("confirmDelete");
+const readStatus = document.getElementById("readStatus");
 
 
 function Book(title, author, status) {
@@ -31,6 +32,10 @@ function Book(title, author, status) {
   this.title = title;
   this.author = author;
   this.status = status;
+  this.toggleStatus = function() {
+    this.status++;
+    if (this.status > 3) this.status = 1;
+  }
 }
 
 function addBookToLibrary(title, author, status) {
@@ -60,12 +65,66 @@ function changeContent(){
   titleDis.textContent = myLibrary.at(bookPointer).title;
   authorDis.textContent = myLibrary.at(bookPointer).author;
   book.dataset.bookId = myLibrary.at(bookPointer).id;
+  changeReadStatus();
+}
+
+function changeReadStatus(){
+  readStatus.textContent = translateBookStatusCode();
+  changeBookStatusColor();
+}
+
+function changeBookStatusColor(){
+  removeBookStatusColor();
+  switch (myLibrary.at(bookPointer).status) {
+    case 1:
+      readStatus.classList.add("notRead");
+      break;
+    case 2:
+      readStatus.classList.add("inTheMiddle");
+      break;
+    case 3:
+      readStatus.classList.add("finished");
+      break;
+    default:
+      statusString = "Progress: N/A";
+  }
+}
+
+function removeBookStatusColor() {
+  if (readStatus.classList.contains("notRead")) {
+    readStatus.classList.toggle("notRead");
+  }
+  if (readStatus.classList.contains("inTheMiddle")) {
+    readStatus.classList.toggle("inTheMiddle");
+  }
+  if (readStatus.classList.contains("finished")) {
+    readStatus.classList.toggle("finished");
+  }
+}
+
+function translateBookStatusCode(){
+  statusString = "";
+  switch (myLibrary.at(bookPointer).status) {
+    case 1:
+      statusString = "Progress: Not read";
+      break;
+    case 2:
+      statusString = "Progress: In the middle";
+      break;
+    case 3:
+      statusString = "Progress: Finished";
+      break;
+    default:
+      statusString = "Progress: N/A";
+  }
+  return statusString;
 }
 
 function revertContent(){
   titleDis.textContent = "No book has been selected";
   authorDis.textContent = "";
   book.dataset.bookId = "";
+  readStatus.textContent = "Progress: N/A"
   bookPointer = 0;
 }
 
@@ -187,14 +246,20 @@ confirmDelete.addEventListener('click', (e) => {
     if (currentBook.id == book.dataset.bookId) return index;
   });
   if (deletionCandidate == -1) return;
-  myLibrary.splice(deletionCandidate, deletionCandidate);
+  myLibrary.splice(deletionCandidate, 1);
   filter.classList.add('hide');
   deleteBubble.classList.add('hide');
   revertContent();
+});
+
+readStatus.addEventListener('click', (e) => {
+  myLibrary.at(bookPointer).toggleStatus();
+  changeReadStatus();
 });
 
 backArr.addEventListener('transitionend', removeBackTransition)
 forwardArr.addEventListener('transitionend', removeForwardTransition)
 buttons.forEach(button => button.addEventListener('click', (e) => {
   (bookPointer == 0) ? deleteButton.disabled = true : deleteButton.disabled = false;
+  (bookPointer == 0) ? readStatus.disabled = true : readStatus.disabled = false;
 }));

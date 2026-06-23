@@ -114,17 +114,12 @@ div.bottom > button {
   font-size: 2rem;
 }
 
-button:hover{
+button:hover, div.bottom > button:hover{
   background-color: rgba(70, 70, 255, 0.296);
   cursor: pointer;
 }
 
-div.bottom > button:hover{
-  background-color: rgba(70, 70, 255, 0.296);
-  cursor: pointer;
-}
-
-.delete:disabled, .delete:disabled:hover {
+.disableable:disabled, .disableable:disabled:hover {
   background-color: rgb(255, 255, 255);
   cursor: not-allowed;
 }
@@ -259,4 +254,28 @@ fieldset > div {
 
 .deleteConfirmation > div > button {
   font-size: 3.2rem;
+}
+
+button:not(.disableable:disabled)#readStatus.notRead {
+  background-color: rgb(204, 204, 204);
+}
+
+button:not(.disableable:disabled)#readStatus.notRead:hover {
+  background-color: rgb(241, 240, 240);
+}
+
+button:not(.disableable:disabled)#readStatus.inTheMiddle {
+  background-color: rgb(204, 201, 14);
+}
+
+button:not(.disableable:disabled)#readStatus.inTheMiddle:hover {
+  background-color: rgb(236, 233, 16);
+}
+
+button:not(.disableable:disabled)#readStatus.finished {
+  background-color: rgb(17, 181, 17);
+}
+
+button:not(.disableable:disabled)#readStatus.finished:hover {
+  background-color: rgb(24, 217, 24);
 }
