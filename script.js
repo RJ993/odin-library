@@ -1,3 +1,17 @@
+class Book {
+  constructor(title, author, status) {
+    this.id = crypto.randomUUID();
+    this.title = title;
+    this.author = author;
+    this.status = status;
+  }
+  
+  toggleStatus() {
+    this.status++;
+    if (this.status > 3) this.status = 1;
+  }
+}
+
 const myLibrary = [new Book("Please insert a book in the library!", "", 0)];
 let bookPointer = 0;
 const book = document.getElementById("book");
@@ -22,21 +36,6 @@ const deleteBubble = document.querySelector(".deleteConfirmation");
 const cancelDelete = document.getElementById("cancelDelete");
 const confirmDelete = document.getElementById("confirmDelete");
 const readStatus = document.getElementById("readStatus");
-
-
-function Book(title, author, status) {
-  if (!new.target) {
-    throw Error("You must use the 'new' operator to call the constructor");
-  }
-  this.id = crypto.randomUUID();
-  this.title = title;
-  this.author = author;
-  this.status = status;
-  this.toggleStatus = function() {
-    this.status++;
-    if (this.status > 3) this.status = 1;
-  }
-}
 
 function addBookToLibrary(title, author, status) {
   const newBook = new Book(title, author, status);
